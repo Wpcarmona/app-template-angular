@@ -1,9 +1,9 @@
 import { axiosInstance } from "../../../config/config";
-import { AuthDatasource, Login, Logout, Register } from "../../../domain/domain";
+import { AuthDatasource, Login, Logout, Register, resetPassword } from "../../../domain/domain";
 
 
 export class AuthDatasourceImpl extends AuthDatasource{
-
+   
     
 
     override async login(email: string, password: string): Promise<Login> {
@@ -42,6 +42,18 @@ export class AuthDatasourceImpl extends AuthDatasource{
        } catch (error) {
         throw new Error("Method not implemented.");
        }
+    }
+
+
+    override async resetPassword(email: string): Promise<resetPassword> {
+        try {
+            const response = await axiosInstance.post('/auth/reset-password', {
+                email
+            });
+            return response.data;
+        } catch (error) {
+            throw new Error("Method not implemented.");
+        }
     }
     
 }

@@ -1,4 +1,4 @@
-import { Login, Logout, Register } from "../../domain";
+import { Login, Logout, Register, resetPassword } from "../../domain";
 
 
 export abstract class AuthDatasource{
@@ -20,5 +20,7 @@ export abstract class AuthDatasource{
     ): Promise<Register>;
     
     abstract logout(): Promise<Logout>;
+
+    abstract resetPassword(email: string): Promise<resetPassword>;
 
 }
